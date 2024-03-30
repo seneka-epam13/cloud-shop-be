@@ -12,7 +12,7 @@
     "target": "ES2020",
     "outDir": "lib"
   },
-  "include": ["src/**/*.ts", "serverless.ts"],
+  "include": ["src/**/*.ts", "serverless.ts", "src/libs/data-migration.js", "src/libs/dynamodb-handlers.ts", "src/libs/dynamodb-handlers.js"],
   "exclude": [
     "node_modules/**/*",
     ".serverless/**/*",

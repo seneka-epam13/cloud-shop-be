@@ -13,6 +13,6 @@ export const formatJSONResponse = (response: Record<string, unknown>) => {
       "Access-Control-Allow-Headers": "Content-Type",
       "Access-Control-Allow-Methods": "OPTIONS,POST,GET"
   },
-    body: JSON.stringify(rest.products)
+    body: JSON.stringify(rest.body)
   }
 }
