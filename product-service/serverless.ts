@@ -5,12 +5,12 @@ import getProductById from '@functions/getProductById';
 import createProduct from '@functions/createProduct';
 
 const serverlessConfiguration: AWS = {
-  service: 'product-list',
+  service: 'product-service',
   frameworkVersion: '3',
   plugins: ['serverless-esbuild'],
   provider: {
     name: 'aws',
-    runtime: 'nodejs20.x',
+    runtime: 'nodejs16.x',
     apiGateway: {
       minimumCompressionSize: 1024,
       shouldStartNameWithService: true,
