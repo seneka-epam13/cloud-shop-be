@@ -18,12 +18,8 @@ const createProduct: ValidatedEventAPIGatewayProxyEvent<typeof schema> = async (
   try {
     await putItem(productItem, process.env.PRODUCTS_TABLE);
     await putItem(stockItem, process.env.STOCKS_TABLE);
-    return formatJSONResponse({ body: product, status: 201 });
+    return formatJSONResponse({ body: product, status: 201, method: event.httpMethod });
   } catch (err) {
-    console.error(
-      "Unable to create product. Error JSON:",
-      JSON.stringify(err, null, 2)
-    );
     return formatJSONResponse({
       message: "Unable to create product",
       status: 500,
