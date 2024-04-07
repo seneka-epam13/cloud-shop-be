@@ -1,10 +1,8 @@
-const AWS = require('aws-sdk');
-const docClient = new AWS.DynamoDB.DocumentClient({region: 'us-east-1'});
-
+import { dynamodb } from "./aws-sdk-services";
 
 export const scanTable = async (tableName) => {
   try {
-    const data = await docClient.scan({TableName: tableName}).promise();
+    const data = await dynamodb.scan({TableName: tableName}).promise();
     return data.Items;
   } catch (err) {
     console.error("Unable to scan the table. Error JSON:", JSON.stringify(err, null, 2));
@@ -21,7 +19,7 @@ export const queryTable = async (id, tableName) => {
   };
 
   try {
-    const data = await docClient.query(params).promise();
+    const data = await dynamodb.query(params).promise();
     return data;
   } catch (err) {
     console.error("Unable to query the table. Error JSON:", JSON.stringify(err, null, 2));
@@ -37,7 +35,7 @@ export const getItem = async (id, tableName) => {
   };
 
   try {
-    const data = await docClient.get(params).promise();
+    const data = await dynamodb.get(params).promise();
     return data.Item;
   } catch (err) {
     console.error("Unable to read item. Error JSON:", JSON.stringify(err, null, 2));
@@ -52,7 +50,7 @@ export const putItem = async (item, tableName) => {
   };
 
   try {
-    await docClient.put(params).promise();
+    await dynamodb.put(params).promise();
     console.log("PutItem succeeded:", item);
   } catch (err) {
     console.error("Unable to add item. Error JSON:", JSON.stringify(err, null, 2));
