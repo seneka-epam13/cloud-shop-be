@@ -2,14 +2,15 @@ import type { AWS } from '@serverless/typescript';
 
 import getProductList from '@functions/getProductList';
 import getProductById from '@functions/getProductById';
+import createProduct from '@functions/createProduct';
 
 const serverlessConfiguration: AWS = {
-  service: 'product-list',
+  service: 'product-service',
   frameworkVersion: '3',
   plugins: ['serverless-esbuild'],
   provider: {
     name: 'aws',
-    runtime: 'nodejs20.x',
+    runtime: 'nodejs16.x',
     apiGateway: {
       minimumCompressionSize: 1024,
       shouldStartNameWithService: true,
@@ -17,10 +18,12 @@ const serverlessConfiguration: AWS = {
     environment: {
       AWS_NODEJS_CONNECTION_REUSE_ENABLED: '1',
       NODE_OPTIONS: '--enable-source-maps --stack-trace-limit=1000',
+      PRODUCTS_TABLE: "Products",
+      STOCKS_TABLE: "Stocks"
     },
   },
   // import the function via paths
-  functions: { getProductList, getProductById },
+  functions: { getProductList, getProductById, createProduct },
   package: { individually: true },
   custom: {
     esbuild: {
