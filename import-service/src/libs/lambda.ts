@@ -5,8 +5,6 @@ export const middyfy = (handler) => {
   return middy(handler).use(middyJsonBodyParser())
 }
 
-
-
-export const middyfy2 = (handler) => {
+export const middyfyS3 = (handler) => {
   return middy(handler)
 }

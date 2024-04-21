@@ -13,7 +13,6 @@ const stocks = productList.map(({ id, count }) => ({
 
 async function isTableEmpty(tableName) {
     const data = await scanTable(tableName)
-    console.log(data?.length === 0, "DSAD")
     return data?.length === 0;
   }
   
